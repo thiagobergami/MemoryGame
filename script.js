@@ -69,19 +69,21 @@ function markX(){
     classes.push($class)
     if(count === 2){
       if(armazem[0] === armazem[1]){
-        classes[0].attr("class", "done")
-        classes[1].attr("class", "done")
+        classes[-1].attr("class", "done")
+        classes[-2].attr("class", "done")
         let msf = $('.done').length
         vence = vence + msf
         if(vence === 56){
           alert('Venceu')
         }
-        classes.lenght = 0;
+
+
       }else{
         setTimeout(markX,2000)
       }
       count = 0
       armazem.length = 0;
+      classes.lenght = 0;
     }
 
   })
