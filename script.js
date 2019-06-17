@@ -1,8 +1,11 @@
 //Variaveis globais
-let imagens = ['img/facebook.png','img/android.png','img/chrome.png','img/firefox.png','img/html5.png','img/googleplus.png','img/twitter.png','img/windows.png','img/cross.png'];
+let imagens = ['img/facebook.png','img/android.png','img/chrome.png','img/firefox.png','img/html5.png','img/googleplus.png','img/twitter.png','img/windows.png'];
 let index = []
-let count = 1
-let amarzem = []
+let count = 0
+let armazem = []
+let classes = []
+let vence = 0
+
 //app.inicio();
 //conta quantas ocorrencias existem no array
 function contaOcorrencia(array,value){
@@ -36,21 +39,49 @@ function criarCol(){
     }
 
 }
+//pega imagem pelo id
+function getPicture(id){
+    let picture = imagens[id]
+    return picture
+}
+
 
 //Função para marcar X
 function markX(){
+
+  //colocando todas as imagens como cross
   let $img = $('.image')
   $img.fadeOut(()=>{
     $img.attr("src", "img/cross.png")
     $img.fadeIn()
   })
-  $('.imagem').on('click',(e)=>{
-    count ++
-    let amarzem = $(e).attr('id')
-    alert(armazem)
-    if(count === 2){
-      count = 0
 
+  //mostrando e checando se são iguais
+
+  $('.imagem').on('click',(e)=>{
+    let $class = $(e.target)
+    let id = $class.attr('id')
+    count ++
+    let pic = getPicture(id)
+    $class.attr("src", pic)
+    $class.fadeIn()
+    armazem.push(id)
+    classes.push($class)
+    if(count === 2){
+      if(armazem[0] === armazem[1]){
+        classes[0].attr("class", "done")
+        classes[1].attr("class", "done")
+        let msf = $('.done').length
+        vence = vence + msf
+        if(vence === 56){
+          alert('Venceu')
+        }
+        classes.lenght = 0;
+      }else{
+        setTimeout(markX,2000)
+      }
+      count = 0
+      armazem.length = 0;
     }
 
   })
