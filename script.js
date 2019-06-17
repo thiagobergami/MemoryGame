@@ -32,22 +32,25 @@ function criarCol(){
       let $row = $('.principal')
       let div = `<div class="col-3"><img src='${imagem}' id='${vlindex}' alt='img'></div>`
       $row.append(div)
+      $row.fadeIn()
       index.push(vlindex)
     }
-
-
-
 
 }
 
 //Chamando as funções quando carregar a páginas
 $(".row").on('click', 'button',(e)=>{
-  let total = 16
-  for(let i = 0; i < total ; i++){
-    criarCol()
-  }
+  let $espaco = $('.principal');
+  $espaco.fadeOut(()=>{
+    let total = 16
+    for(let i = 0; i < total ; i++){
+      criarCol()
+    }
+    $espaco.fadeIn()
+  })
+
 })
 
 $(document).ready(function(){
-  
+
 })
