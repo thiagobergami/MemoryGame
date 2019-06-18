@@ -36,7 +36,7 @@ function criarCol(){
 
     }else{
       let $row = $('.principal')
-      let div = `<div class="col-3 imagem"><button type="button" class="btn btn-outline-primary"><img src='${imagem}' id='${vlindex}' alt='img' class='image'></button></div>`
+      let div = `<div class="col-3 imagem"><button type="button" class="btn btn-outline-primary botas" id="botas"><img src='${imagem}' id='${vlindex}' alt='img' class='image'></button></div>`
       $row.append(div)
       $row.fadeIn()
       index.push(vlindex)
@@ -53,6 +53,7 @@ function getPicture(id){
 //Função para marcar X
 function markX(){
   index = []
+  $('.botas').removeAttr("disabled")
   //colocando todas as imagens como cross
   let $img = $('.image')
   $img.fadeOut(()=>{
@@ -90,7 +91,9 @@ function verifica(){
 
         }
       }else{
-        markX()
+
+        $(".botas").attr("disabled",true)
+        setTimeout(markX,1500)
       }
       count = 0
       armazem = []
@@ -100,6 +103,10 @@ function verifica(){
     }
 
   })
+}
+function travaTela(){
+  $('.container').blur()
+
 }
 
 //Chamando as funções quando carregar a páginas
