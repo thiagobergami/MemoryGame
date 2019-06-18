@@ -6,6 +6,8 @@ let count = 0
 let armazem = []
 let classes = []
 let vence = 0
+let antes = 0
+let depois = 0
 
 //app.inicio();
 //conta quantas ocorrencias existem no array
@@ -30,7 +32,6 @@ function criarCol(){
     let tamanhoArray = 0
     tamanhoArray = (contaOcorrencia(index , vlindex))
     if(tamanhoArray == 2){
-      index = []
       criarCol()
 
     }else{
@@ -51,7 +52,7 @@ function getPicture(id){
 
 //Função para marcar X
 function markX(){
-
+  index = []
   //colocando todas as imagens como cross
   let $img = $('.image')
   $img.fadeOut(()=>{
@@ -82,11 +83,14 @@ function verifica(){
         $aux02.attr("class", "done")
         let msf = $('.done').length
         vence = vence + msf
+        console.log(vence)
         if(vence === 72){
-          alert('Venceu')
+          depois = Date.now() - antes
+          alert('Venceu ' +depois+' ms')
+
         }
       }else{
-      delay(markX,1500)
+        markX()
       }
       count = 0
       armazem = []
@@ -110,6 +114,7 @@ $(".botao").on('click', 'button',(e)=>{
     }
     $espaco.fadeIn()
   })
+  antes = Date.now()
   setTimeout(markX,3000)
   setTimeout(verifica,3001)
 })
